@@ -12,10 +12,5 @@ use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
 
 interface SecurityBlockerAgentValidatorInterface
 {
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Generated\Shared\Transfer\RestErrorCollectionTransfer|null
-     */
     public function isAccountBlocked(RestRequestInterface $restRequest): ?RestErrorCollectionTransfer;
 }

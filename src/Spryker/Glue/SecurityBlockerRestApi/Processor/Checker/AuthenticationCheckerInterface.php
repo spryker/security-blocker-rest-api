@@ -12,19 +12,7 @@ use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
 
 interface AuthenticationCheckerInterface
 {
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param string $expectedResourceType
-     *
-     * @return bool
-     */
     public function isAuthenticationRequest(RestRequestInterface $restRequest, string $expectedResourceType): bool;
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface $restResponse
-     * @param string $expectedCode
-     *
-     * @return bool
-     */
     public function isFailedAuthenticationResponse(RestResponseInterface $restResponse, string $expectedCode): bool;
 }

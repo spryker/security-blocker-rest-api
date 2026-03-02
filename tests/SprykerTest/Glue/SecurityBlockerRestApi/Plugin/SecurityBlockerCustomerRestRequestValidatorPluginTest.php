@@ -45,9 +45,6 @@ class SecurityBlockerCustomerRestRequestValidatorPluginTest extends Unit
      */
     protected $securityCheckAuthContextTransfer;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -56,9 +53,6 @@ class SecurityBlockerCustomerRestRequestValidatorPluginTest extends Unit
             ->getSecurityCheckAuthContextTransfer(SecurityBlockerRestApiConfig::SECURITY_BLOCKER_CUSTOMER_ENTITY_TYPE);
     }
 
-    /**
-     * @return void
-     */
     public function testSecurityBlockerCustomerRestRequestValidatorPluginWillCallSecurityBlockerClient(): void
     {
         // Arrange
@@ -84,9 +78,6 @@ class SecurityBlockerCustomerRestRequestValidatorPluginTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testSecurityBlockerCustomerRestRequestValidatorPluginWillNotCallSecurityBlockerClientOnInvalidRequest(): void
     {
         // Arrange

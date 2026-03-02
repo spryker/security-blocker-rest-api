@@ -48,11 +48,6 @@ class SecurityBlockerRestApiTester extends Actor
      */
     protected const RESPONSE_INVALID_LOGIN = '003';
 
-    /**
-     * @param string $type
-     *
-     * @return \Generated\Shared\Transfer\SecurityCheckAuthContextTransfer
-     */
     public function getSecurityCheckAuthContextTransfer(string $type): SecurityCheckAuthContextTransfer
     {
         return (new SecurityCheckAuthContextTransfer())
@@ -61,11 +56,6 @@ class SecurityBlockerRestApiTester extends Actor
             ->setIp('66.66.66.6');
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SecurityCheckAuthContextTransfer $securityCheckAuthContextTransfer
-     *
-     * @return \Generated\Shared\Transfer\RestAgentAccessTokensRequestAttributesTransfer
-     */
     public function getRestAgentAccessTokensRequestAttributesTransfer(
         SecurityCheckAuthContextTransfer $securityCheckAuthContextTransfer
     ): RestAgentAccessTokensRequestAttributesTransfer {
@@ -73,11 +63,6 @@ class SecurityBlockerRestApiTester extends Actor
             ->setUsername($securityCheckAuthContextTransfer->getAccount());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SecurityCheckAuthContextTransfer $securityCheckAuthContextTransfer
-     *
-     * @return \Generated\Shared\Transfer\RestAccessTokensAttributesTransfer
-     */
     public function getRestAccessTokensAttributesTransfer(
         SecurityCheckAuthContextTransfer $securityCheckAuthContextTransfer
     ): RestAccessTokensAttributesTransfer {
@@ -85,9 +70,6 @@ class SecurityBlockerRestApiTester extends Actor
             ->setUsername($securityCheckAuthContextTransfer->getAccount());
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\RestErrorMessageTransfer
-     */
     public function getAgentRestErrorMessageTransfer(): RestErrorMessageTransfer
     {
         return (new RestErrorMessageTransfer())
@@ -95,9 +77,6 @@ class SecurityBlockerRestApiTester extends Actor
             ->setStatus(Response::HTTP_UNAUTHORIZED);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\RestErrorMessageTransfer
-     */
     public function getCustomerRestErrorMessageTransfer(): RestErrorMessageTransfer
     {
         return (new RestErrorMessageTransfer())

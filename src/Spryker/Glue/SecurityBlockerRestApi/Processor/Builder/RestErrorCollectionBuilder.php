@@ -21,20 +21,11 @@ class RestErrorCollectionBuilder implements RestErrorCollectionBuilderInterface
      */
     protected $glossaryStorageClient;
 
-    /**
-     * @param \Spryker\Glue\SecurityBlockerRestApi\Dependency\Client\SecurityBlockerRestApiToGlossaryStorageClientInterface $glossaryStorageClient
-     */
     public function __construct(SecurityBlockerRestApiToGlossaryStorageClientInterface $glossaryStorageClient)
     {
         $this->glossaryStorageClient = $glossaryStorageClient;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SecurityCheckAuthResponseTransfer $securityCheckAuthResponseTransfer
-     * @param string $localeName
-     *
-     * @return \Generated\Shared\Transfer\RestErrorCollectionTransfer
-     */
     public function createRestErrorCollectionTransfer(
         SecurityCheckAuthResponseTransfer $securityCheckAuthResponseTransfer,
         string $localeName
@@ -54,11 +45,6 @@ class RestErrorCollectionBuilder implements RestErrorCollectionBuilderInterface
             ->addRestError($restErrorMessageTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SecurityCheckAuthResponseTransfer $securityCheckAuthResponseTransfer
-     *
-     * @return string
-     */
     protected function convertSecondsToReadableTime(
         SecurityCheckAuthResponseTransfer $securityCheckAuthResponseTransfer
     ): string {

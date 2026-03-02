@@ -33,10 +33,6 @@ class SecurityBlockerAgentStorage implements SecurityBlockerAgentStorageInterfac
      */
     protected $authenticationChecker;
 
-    /**
-     * @param \Spryker\Glue\SecurityBlockerRestApi\Dependency\Client\SecurityBlockerRestApiToSecurityBlockerClientInterface $securityBlockerClient
-     * @param \Spryker\Glue\SecurityBlockerRestApi\Processor\Checker\AuthenticationCheckerInterface $authenticationChecker
-     */
     public function __construct(
         SecurityBlockerRestApiToSecurityBlockerClientInterface $securityBlockerClient,
         AuthenticationCheckerInterface $authenticationChecker
@@ -45,13 +41,6 @@ class SecurityBlockerAgentStorage implements SecurityBlockerAgentStorageInterfac
         $this->authenticationChecker = $authenticationChecker;
     }
 
-    /**
-     * @param string $action
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface $restResponse
-     *
-     * @return void
-     */
     public function incrementLoginAttemptCount(
         string $action,
         RestRequestInterface $restRequest,
@@ -69,11 +58,6 @@ class SecurityBlockerAgentStorage implements SecurityBlockerAgentStorageInterfac
         $this->securityBlockerClient->incrementLoginAttemptCount($securityCheckAuthContextTransfer);
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Generated\Shared\Transfer\SecurityCheckAuthContextTransfer
-     */
     protected function createSecurityCheckAuthContextTransfer(RestRequestInterface $restRequest): SecurityCheckAuthContextTransfer
     {
         /** @var \Generated\Shared\Transfer\RestAccessTokensAttributesTransfer $restAccessTokensAttributesTransfer */

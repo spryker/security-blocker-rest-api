@@ -12,12 +12,6 @@ use Generated\Shared\Transfer\SecurityCheckAuthResponseTransfer;
 
 interface RestErrorCollectionBuilderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\SecurityCheckAuthResponseTransfer $securityCheckAuthResponseTransfer
-     * @param string $localeName
-     *
-     * @return \Generated\Shared\Transfer\RestErrorCollectionTransfer
-     */
     public function createRestErrorCollectionTransfer(
         SecurityCheckAuthResponseTransfer $securityCheckAuthResponseTransfer,
         string $localeName

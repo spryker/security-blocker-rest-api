@@ -46,9 +46,6 @@ class SecurityBlockerAgentControllerAfterActionPluginTest extends Unit
      */
     protected $securityCheckAuthContextTransfer;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -57,9 +54,6 @@ class SecurityBlockerAgentControllerAfterActionPluginTest extends Unit
             ->getSecurityCheckAuthContextTransfer(SecurityBlockerRestApiConfig::SECURITY_BLOCKER_AGENT_ENTITY_TYPE);
     }
 
-    /**
-     * @return void
-     */
     public function testSecurityBlockerAgentControllerAfterActionPluginWillCallSecurityBlockerClient(): void
     {
         // Arrange
@@ -86,9 +80,6 @@ class SecurityBlockerAgentControllerAfterActionPluginTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testSecurityBlockerAgentControllerAfterActionPluginWillNotCallSecurityBlockerClientOnInvalidRequest(): void
     {
         // Arrange

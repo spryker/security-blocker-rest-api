@@ -12,13 +12,6 @@ use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
 
 interface SecurityBlockerStorageInterface
 {
-    /**
-     * @param string $action
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface $restResponse
-     *
-     * @return void
-     */
     public function incrementLoginAttemptCount(
         string $action,
         RestRequestInterface $restRequest,

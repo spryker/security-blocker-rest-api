@@ -32,11 +32,6 @@ class SecurityBlockerAgentValidator implements SecurityBlockerAgentValidatorInte
      */
     protected $restErrorCollectionBuilder;
 
-    /**
-     * @param \Spryker\Glue\SecurityBlockerRestApi\Dependency\Client\SecurityBlockerRestApiToSecurityBlockerClientInterface $securityBlockerClient
-     * @param \Spryker\Glue\SecurityBlockerRestApi\Processor\Checker\AuthenticationCheckerInterface $authenticationChecker
-     * @param \Spryker\Glue\SecurityBlockerRestApi\Processor\Builder\RestErrorCollectionBuilderInterface $restErrorCollectionBuilder
-     */
     public function __construct(
         SecurityBlockerRestApiToSecurityBlockerClientInterface $securityBlockerClient,
         AuthenticationCheckerInterface $authenticationChecker,
@@ -47,11 +42,6 @@ class SecurityBlockerAgentValidator implements SecurityBlockerAgentValidatorInte
         $this->restErrorCollectionBuilder = $restErrorCollectionBuilder;
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Generated\Shared\Transfer\RestErrorCollectionTransfer|null
-     */
     public function isAccountBlocked(RestRequestInterface $restRequest): ?RestErrorCollectionTransfer
     {
         if (!$this->authenticationChecker->isAuthenticationRequest($restRequest, SecurityBlockerRestApiConfig::RESOURCE_AGENT_ACCESS_TOKENS)) {
@@ -73,11 +63,6 @@ class SecurityBlockerAgentValidator implements SecurityBlockerAgentValidatorInte
         );
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Generated\Shared\Transfer\SecurityCheckAuthContextTransfer
-     */
     protected function createSecurityCheckAuthContextTransfer(RestRequestInterface $restRequest): SecurityCheckAuthContextTransfer
     {
         /** @var \Generated\Shared\Transfer\RestAccessTokensAttributesTransfer $restAccessTokensAttributesTransfer */

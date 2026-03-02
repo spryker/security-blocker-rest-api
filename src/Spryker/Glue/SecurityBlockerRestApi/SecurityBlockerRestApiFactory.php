@@ -25,9 +25,6 @@ use Spryker\Glue\SecurityBlockerRestApi\Processor\Customer\Validator\SecurityBlo
 
 class SecurityBlockerRestApiFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Glue\SecurityBlockerRestApi\Processor\Customer\Storage\SecurityBlockerStorageInterface
-     */
     public function createSecurityBlockerStorage(): SecurityBlockerStorageInterface
     {
         return new SecurityBlockerStorage(
@@ -36,9 +33,6 @@ class SecurityBlockerRestApiFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\SecurityBlockerRestApi\Processor\Customer\Validator\SecurityBlockerValidatorInterface
-     */
     public function createSecurityBlockerValidator(): SecurityBlockerValidatorInterface
     {
         return new SecurityBlockerValidator(
@@ -48,9 +42,6 @@ class SecurityBlockerRestApiFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\SecurityBlockerRestApi\Processor\Agent\Storage\SecurityBlockerAgentStorageInterface
-     */
     public function createSecurityBlockerAgentStorage(): SecurityBlockerAgentStorageInterface
     {
         return new SecurityBlockerAgentStorage(
@@ -59,9 +50,6 @@ class SecurityBlockerRestApiFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\SecurityBlockerRestApi\Processor\Agent\Validator\SecurityBlockerAgentValidatorInterface
-     */
     public function createSecurityBlockerAgentValidator(): SecurityBlockerAgentValidatorInterface
     {
         return new SecurityBlockerAgentValidator(
@@ -71,33 +59,21 @@ class SecurityBlockerRestApiFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\SecurityBlockerRestApi\Processor\Builder\RestErrorCollectionBuilderInterface
-     */
     public function createRestErrorCollectionBuilder(): RestErrorCollectionBuilderInterface
     {
         return new RestErrorCollectionBuilder($this->getGlossaryStorageClient());
     }
 
-    /**
-     * @return \Spryker\Glue\SecurityBlockerRestApi\Processor\Checker\AuthenticationCheckerInterface
-     */
     public function createAuthenticationChecker(): AuthenticationCheckerInterface
     {
         return new AuthenticationChecker();
     }
 
-    /**
-     * @return \Spryker\Glue\SecurityBlockerRestApi\Dependency\Client\SecurityBlockerRestApiToSecurityBlockerClientInterface
-     */
     public function getSecurityBlockerClient(): SecurityBlockerRestApiToSecurityBlockerClientInterface
     {
         return $this->getProvidedDependency(SecurityBlockerRestApiDependencyProvider::CLIENT_SECURITY_BLOCKER);
     }
 
-    /**
-     * @return \Spryker\Glue\SecurityBlockerRestApi\Dependency\Client\SecurityBlockerRestApiToGlossaryStorageClientInterface
-     */
     public function getGlossaryStorageClient(): SecurityBlockerRestApiToGlossaryStorageClientInterface
     {
         return $this->getProvidedDependency(SecurityBlockerRestApiDependencyProvider::CLIENT_GLOSSARY_STORAGE);
