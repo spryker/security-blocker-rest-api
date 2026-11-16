@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthenticationChecker implements AuthenticationCheckerInterface
 {
+    protected const int STATUS_NOT_SET = 0;
+
     public function isAuthenticationRequest(RestRequestInterface $restRequest, string $expectedResourceType): bool
     {
         return $restRequest->getResource()->getType() === $expectedResourceType
@@ -36,5 +38,25 @@ class AuthenticationChecker implements AuthenticationCheckerInterface
         }
 
         return false;
+    }
+
+    /**
+     * Success needs positive evidence: an error page that does not parse as JSON:API also has no errors.
+     * Through the API Platform bridge the real status is known; on the legacy Glue path the status is still `0`
+     * when the plugin runs, so the issued token resource is the evidence there.
+     */
+    public function isSuccessfulAuthenticationResponse(RestResponseInterface $restResponse): bool
+    {
+        if ($restResponse->getErrors()) {
+            return false;
+        }
+
+        $status = $restResponse->getStatus();
+
+        if ($status !== static::STATUS_NOT_SET) {
+            return $status >= Response::HTTP_OK && $status < Response::HTTP_MULTIPLE_CHOICES;
+        }
+
+        return $restResponse->getResources() !== [];
     }
 }

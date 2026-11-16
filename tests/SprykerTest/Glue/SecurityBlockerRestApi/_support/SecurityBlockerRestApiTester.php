@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\RestAccessTokensAttributesTransfer;
 use Generated\Shared\Transfer\RestAgentAccessTokensRequestAttributesTransfer;
 use Generated\Shared\Transfer\RestErrorMessageTransfer;
 use Generated\Shared\Transfer\SecurityCheckAuthContextTransfer;
+use Spryker\Glue\SecurityBlockerRestApi\SecurityBlockerRestApiConfig;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -54,6 +55,15 @@ class SecurityBlockerRestApiTester extends Actor
             ->setType($type)
             ->setAccount('test@spryker.com')
             ->setIp('66.66.66.6');
+    }
+
+    public function getLoginSecurityCheckAuthContextTransfer(string $type): SecurityCheckAuthContextTransfer
+    {
+        $securityCheckAuthContextTransfer = $this->getSecurityCheckAuthContextTransfer($type);
+
+        return $securityCheckAuthContextTransfer
+            ->setRealm($type === SecurityBlockerRestApiConfig::SECURITY_BLOCKER_CUSTOMER_ENTITY_TYPE ? SecurityBlockerRestApiConfig::LOGIN_REALM_CUSTOMER : SecurityBlockerRestApiConfig::LOGIN_REALM_USER)
+            ->setLoginIdentifier($securityCheckAuthContextTransfer->getAccount());
     }
 
     public function getRestAgentAccessTokensRequestAttributesTransfer(

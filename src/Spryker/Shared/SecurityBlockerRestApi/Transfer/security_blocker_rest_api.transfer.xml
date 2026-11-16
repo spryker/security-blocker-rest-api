@@ -15,11 +15,18 @@
         <property name="type" type="string" description="The type or category of an entity (e.g., 'allow', 'deny', 'page')."/>
         <property name="ip" type="string" description="The IP address of a client."/>
         <property name="account" type="string" description="An account identifier, often a username or email."/>
+        <property name="realm" type="string" description="The identity realm whose accounts share one login attempt counter (e.g. 'customer', 'user')."/>
+        <property name="loginIdentifier" type="string" description="The submitted login identifier (username or email) whose account is protected regardless of the source IP."/>
     </transfer>
 
     <transfer name="SecurityCheckAuthResponse">
         <property name="isBlocked" type="bool" description="A flag indicating if a user or resource is blocked."/>
         <property name="blockedFor" type="int" description="The duration for which a user or resource is blocked."/>
+    </transfer>
+
+    <transfer name="OauthRequest">
+        <property name="grantType" type="string"/>
+        <property name="username" type="string"/>
     </transfer>
 
     <transfer name="RestAccessTokensAttributes">

@@ -15,12 +15,17 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method \Spryker\Glue\SecurityBlockerRestApi\SecurityBlockerRestApiFactory getFactory()
+ * @method \Spryker\Glue\SecurityBlockerRestApi\SecurityBlockerRestApiConfig getConfig()
  */
 class SecurityBlockerAgentRestRequestValidatorPlugin extends AbstractPlugin implements RestRequestValidatorPluginInterface
 {
     /**
      * {@inheritDoc}
      * - Checks and denies access to the agent who submitted too many failed login attempts.
+     * - With the `ip-and-account` login protection strategy of {@link \Spryker\Glue\SecurityBlockerRestApi\SecurityBlockerRestApiConfig::getLoginProtectionStrategy()}:
+     *   also denies the login when the agent account (`user` realm, regardless of the IP) is blocked, and otherwise counts the attempt against the account
+     *   before the credentials are checked and denies it when the account limit is exceeded.
+     * - Throws an exception when no strategy is registered for the selected key.
      *
      * @api
      *
@@ -31,6 +36,9 @@ class SecurityBlockerAgentRestRequestValidatorPlugin extends AbstractPlugin impl
      */
     public function validate(Request $httpRequest, RestRequestInterface $restRequest): ?RestErrorCollectionTransfer
     {
-        return $this->getFactory()->createSecurityBlockerAgentValidator()->isAccountBlocked($restRequest);
+        return $this->getFactory()
+            ->createLoginProtectionSecurityBlockerAgentValidatorStrategyResolver()
+            ->get($this->getConfig()->getLoginProtectionStrategy())
+            ->isAccountBlocked($restRequest);
     }
 }

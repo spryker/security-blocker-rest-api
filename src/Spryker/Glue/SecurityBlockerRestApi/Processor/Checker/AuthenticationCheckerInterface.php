@@ -15,4 +15,6 @@ interface AuthenticationCheckerInterface
     public function isAuthenticationRequest(RestRequestInterface $restRequest, string $expectedResourceType): bool;
 
     public function isFailedAuthenticationResponse(RestResponseInterface $restResponse, string $expectedCode): bool;
+
+    public function isSuccessfulAuthenticationResponse(RestResponseInterface $restResponse): bool;
 }

@@ -14,12 +14,17 @@ use Spryker\Glue\Kernel\AbstractPlugin;
 
 /**
  * @method \Spryker\Glue\SecurityBlockerRestApi\SecurityBlockerRestApiFactory getFactory()
+ * @method \Spryker\Glue\SecurityBlockerRestApi\SecurityBlockerRestApiConfig getConfig()
  */
 class SecurityBlockerAgentControllerAfterActionPlugin extends AbstractPlugin implements ControllerAfterActionPluginInterface
 {
     /**
      * {@inheritDoc}
      * - Checks if the action is a failed login action and logs the attempt for the agent.
+     * - With the `ip-and-account` login protection strategy of {@link \Spryker\Glue\SecurityBlockerRestApi\SecurityBlockerRestApiConfig::getLoginProtectionStrategy()}:
+     *   registers a failed agent login (invalid credentials) against the per-IP and the realm-wide counters, resets the account counter
+     *   of the `user` realm after a successful agent login, and registers nothing for any other outcome (validation or server errors).
+     * - Throws an exception when no strategy is registered for the selected key.
      *
      * @api
      *
@@ -32,7 +37,8 @@ class SecurityBlockerAgentControllerAfterActionPlugin extends AbstractPlugin imp
     public function afterAction(string $action, RestRequestInterface $restRequest, RestResponseInterface $restResponse): void
     {
         $this->getFactory()
-            ->createSecurityBlockerAgentStorage()
+            ->createLoginProtectionSecurityBlockerAgentStorageStrategyResolver()
+            ->get($this->getConfig()->getLoginProtectionStrategy())
             ->incrementLoginAttemptCount($action, $restRequest, $restResponse);
     }
 }

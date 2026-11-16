@@ -67,6 +67,7 @@ class SecurityBlockerCustomerRestRequestValidatorPluginTest extends Unit
 
         $this->securityBlockerCustomerRestRequestValidatorPlugin = new SecurityBlockerCustomerRestRequestValidatorPlugin();
         $this->securityBlockerCustomerRestRequestValidatorPlugin->setFactory($securityBlockerRestApiFactoryMock);
+        $this->securityBlockerCustomerRestRequestValidatorPlugin->setConfig(new SecurityBlockerRestApiConfig());
 
         $restResourceMock = $this->getRestResourceMock($this->securityCheckAuthContextTransfer);
         $restRequestMock = $this->getRestRequestMock($restResourceMock, $this->securityCheckAuthContextTransfer);
@@ -91,6 +92,7 @@ class SecurityBlockerCustomerRestRequestValidatorPluginTest extends Unit
 
         $this->securityBlockerCustomerRestRequestValidatorPlugin = new SecurityBlockerCustomerRestRequestValidatorPlugin();
         $this->securityBlockerCustomerRestRequestValidatorPlugin->setFactory($securityBlockerRestApiFactoryMock);
+        $this->securityBlockerCustomerRestRequestValidatorPlugin->setConfig(new SecurityBlockerRestApiConfig());
 
         $restResourceMock = $this->getRestResourceMock($this->securityCheckAuthContextTransfer);
         $restRequestMock = $this->getInvalidRestRequestMock($restResourceMock, $this->securityCheckAuthContextTransfer);
